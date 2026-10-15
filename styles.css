@@ -985,6 +985,109 @@ a:hover { text-decoration: underline; }
 .mb-2 { margin-bottom: 8px; }
 .mb-4 { margin-bottom: 16px; }
 
+/* ===== Code blocks (Markdown ``` ... ```) ===== */
+pre.code-block {
+  background: #0d1117;
+  color: #e6edf3;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 12px 0;
+  overflow-x: auto;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 13.5px;
+  line-height: 1.55;
+  white-space: pre;
+  tab-size: 4;
+  position: relative;
+}
+
+pre.code-block[data-lang]::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #7d8590;
+  letter-spacing: 0.5px;
+  font-family: system-ui, sans-serif;
+  font-weight: 600;
+}
+
+pre.code-block code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+  display: block;
+  white-space: pre;
+}
+
+code.inline-code {
+  background: rgba(110, 118, 129, 0.18);
+  color: #c9d1d9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+/* Question text - allow \n in question prompt to wrap */
+.question-text {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.question-text pre.code-block,
+.explanation-content pre.code-block,
+.review-explanation pre.code-block,
+.review-question pre.code-block,
+.review-choices pre.code-block,
+.choice-text pre.code-block {
+  margin: 10px 0;
+  max-width: 100%;
+}
+
+/* Markdown table */
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+table.data-table th,
+table.data-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+table.data-table th {
+  background: rgba(59, 130, 246, 0.12);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+table.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+table.data-table tr:hover td {
+  background: rgba(59, 130, 246, 0.05);
+}
+
 /* ===== Toast ===== */
 .toast {
   position: fixed;

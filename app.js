@@ -158,7 +158,7 @@ function renderQuestion() {
     return `
       <div class="${cls}" data-opt="${optIdx}" role="button" tabindex="0">
         <div class="choice-marker">${marker}</div>
-        <div class="choice-text">${escapeHTML(opt)}</div>
+        <div class="choice-text">${formatText(opt)}</div>
       </div>
     `;
   }).join('');
@@ -170,7 +170,7 @@ function renderQuestion() {
       <span class="question-number">Câu ${idx + 1} / ${state.currentSet.questions.length}</span>
       <span class="question-tag">${getTopicTag(idx)}</span>
     </div>
-    <div class="question-text">${escapeHTML(q.q)}</div>
+    <div class="question-text">${formatText(q.q)}</div>
     <div class="choices" id="choicesList">${choicesHTML}</div>
     ${explanationHTML}
     <div class="question-footer">
@@ -273,10 +273,65 @@ function renderExplanation(q, userSelected) {
   `;
 }
 
+function formatText(text) {
+  if (!text) return '';
+  // Escape HTML first
+  const escaped = escapeHTML(text);
+
+  // Process code blocks first: ```lang\n...\n```  ->  placeholders
+  // Use a placeholder so subsequent \n-><br> doesn't touch the code
+  const codeBlocks = [];
+  let html = escaped.replace(/```([a-zA-Z0-9_+\-#]*)\n([\s\S]*?)```/g, (m, lang, code) => {
+    const idx = codeBlocks.length;
+    codeBlocks.push({ lang: lang, code: code });
+    return `\u0000CODE_BLOCK_${idx}\u0000`;
+  });
+
+  // Process markdown-like tables: multiple lines with | separators
+  // Supports with or without separator line (--- | --- | ---)
+  // Note: must run BEFORE \n -> <br> conversion
+  html = html.replace(/(^|\n)((?:[^\n|<>]+(?:\|[^\n|<>]+)+\n){2,})/g, (m, before, block) => {
+    const lines = block.trim().split('\n');
+    // Filter out the separator line (--- | --- | ---)
+    const dataLines = lines.filter(l => !/^[-:\s|]+$/.test(l.trim()));
+    if (dataLines.length < 2) return m;
+    const splitRow = (row) => row.split('|').map(c => c.trim()).filter(c => c.length > 0);
+    const headerCells = splitRow(dataLines[0]);
+    // Check that all rows have the same column count
+    const colCount = headerCells.length;
+    const rows = dataLines.slice(1).map(splitRow).filter(r => r.length === colCount);
+    if (rows.length === 0) return m;
+    let table = '<table class="data-table"><thead><tr>';
+    headerCells.forEach(h => table += `<th>${h}</th>`);
+    table += '</tr></thead><tbody>';
+    rows.forEach(r => {
+      table += '<tr>';
+      r.forEach(c => table += `<td>${c}</td>`);
+      table += '</tr>';
+    });
+    table += '</tbody></table>';
+    return before + table;
+  });
+
+  // Process inline code: `code`  ->  <code>
+  html = html.replace(/`([^`\n]+)`/g, '<code class="inline-code">$1</code>');
+
+  // Convert remaining newlines to <br>
+  html = html.replace(/\n/g, '<br>');
+
+  // Restore code blocks with proper <pre><code> wrapping (newlines preserved via white-space: pre)
+  html = html.replace(/\u0000CODE_BLOCK_(\d+)\u0000/g, (m, idx) => {
+    const { lang, code } = codeBlocks[parseInt(idx)];
+    return `<pre class="code-block" data-lang="${lang}"><code>${code}</code></pre>`;
+  });
+
+  return html;
+}
+
 function formatExplanation(text, correctIdx) {
   // Bold the answer key
   const correctLetter = String.fromCharCode(65 + correctIdx);
-  return escapeHTML(text).replace(/Đáp án đúng: ([A-D])/g, '<strong>Đáp án đúng: $1</strong>');
+  return formatText(text).replace(/Đáp án đúng: ([A-D])/g, '<strong>Đáp án đúng: $1</strong>');
 }
 
 function goToQuestion(idx) {
@@ -370,23 +425,23 @@ function renderResult() {
       if (optIdx === q.ans) {
         cls += ' actual-correct';
         if (userSelected === optIdx) cls = 'review-choice user-correct';
-        return `<div class="${cls}"><span>✓</span><span><strong>${String.fromCharCode(65+optIdx)}.</strong> ${escapeHTML(opt)} ${optIdx === q.ans && userSelected !== optIdx ? '(Đáp án đúng)' : ''}</span></div>`;
+        return `<div class="${cls}"><span>✓</span><span><strong>${String.fromCharCode(65+optIdx)}.</strong> ${formatText(opt)} ${optIdx === q.ans && userSelected !== optIdx ? '(Đáp án đúng)' : ''}</span></div>`;
       } else if (optIdx === userSelected) {
         cls += ' user-incorrect';
-        return `<div class="${cls}"><span>✗</span><span><strong>${String.fromCharCode(65+optIdx)}.</strong> ${escapeHTML(opt)} (Bạn chọn)</span></div>`;
+        return `<div class="${cls}"><span>✗</span><span><strong>${String.fromCharCode(65+optIdx)}.</strong> ${formatText(opt)} (Bạn chọn)</span></div>`;
       }
-      return `<div class="review-choice"><span style="opacity:0.3">·</span><span><strong>${String.fromCharCode(65+optIdx)}.</strong> ${escapeHTML(opt)}</span></div>`;
+      return `<div class="review-choice"><span style="opacity:0.3">·</span><span><strong>${String.fromCharCode(65+optIdx)}.</strong> ${formatText(opt)}</span></div>`;
     }).join('');
 
     return `
       <div class="review-question">
         <div class="review-question-header">
-          <div class="review-question-title">Câu ${idx + 1}: ${escapeHTML(q.q)}</div>
+          <div class="review-question-title">Câu ${idx + 1}: ${formatText(q.q)}</div>
           <span class="review-status ${statusClass}">${statusText}</span>
         </div>
         <div class="review-choices">${choicesReview}</div>
         <div class="review-explanation">
-          <strong>💡 Giải thích:</strong> ${escapeHTML(q.exp)}
+          <strong>💡 Giải thích:</strong> ${formatText(q.exp)}
         </div>
       </div>
     `;
