@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OLP AI - Đề thi trắc nghiệm</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-logo">AI</div>
+          <div>
+            <div>OLP AI</div>
+            <div style="font-size:11px;color:var(--text-muted);font-weight:500;margin-top:-2px;">Olympic Trí tuệ nhân tạo</div>
+          </div>
+        </div>
+        <div class="header-actions">
+          <a href="index.html" class="btn btn-ghost" id="homeBtn">🏠 Trang chủ</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="main" id="mainContent">
+      <!-- Trang chủ: danh sách đề -->
+      <section id="homeView">
+        <div class="intro-banner">
+          <h2>🎓 Luyện thi Olympic Trí tuệ nhân tạo (OLP AI)</h2>
+          <p>14 đề thi trắc nghiệm hoàn chỉnh, mỗi đề 22-33 câu trộn lẫn các chủ đề <strong>Học máy, Thị giác máy tính, Xử lý ngôn ngữ tự nhiên</strong> (ML, DL, CNN, GAN, NLP, BERT, GPT, LLM, code reading, tính toán) — theo cấu trúc và độ khó tương đương đề gốc OLP AI Việt Nam 2025 (Vòng sơ loại, 100 câu, 180 phút). Mỗi câu có 4 đáp án A/B/C/D và giải thích chi tiết.</p>
+          <div class="intro-stats">
+            <div class="intro-stat">
+              <div class="intro-stat-value" id="totalSets">14</div>
+              <div class="intro-stat-label">Bộ đề</div>
+            </div>
+            <div class="intro-stat">
+              <div class="intro-stat-value" id="totalQuestions">420+</div>
+              <div class="intro-stat-label">Câu hỏi</div>
+            </div>
+            <div class="intro-stat">
+              <div class="intro-stat-value">100%</div>
+              <div class="intro-stat-label">Có giải thích</div>
+            </div>
+          </div>
+        </div>
+
+        <h1 class="page-title">📚 Danh sách bộ đề</h1>
+        <p class="page-subtitle">Chọn một bộ đề để bắt đầu làm bài. Bạn có thể xem giải thích ngay sau khi chọn đáp án.</p>
+
+        <div class="exam-grid" id="examGrid"></div>
+      </section>
+
+      <!-- Trang làm bài -->
+      <section id="examView" class="hidden">
+        <div class="exam-header">
+          <div class="exam-header-info">
+            <h1 id="examTitle">Bộ đề</h1>
+            <div class="meta" id="examMeta">30 câu • 60 phút</div>
+          </div>
+          <div class="exam-header-controls">
+            <div class="timer" id="timer">⏱ 60:00</div>
+            <button class="btn btn-primary" id="submitBtn">📝 Nộp bài</button>
+          </div>
+        </div>
+
+        <div class="exam-layout">
+          <div class="question-card" id="questionCard">
+            <!-- Question content injected here -->
+          </div>
+
+          <aside class="question-palette">
+            <div class="palette-title">
+              <span>Danh sách câu hỏi</span>
+              <span class="palette-stats" id="paletteStats">0/30</span>
+            </div>
+            <div class="palette-grid" id="paletteGrid"></div>
+            <div class="palette-legend">
+              <div class="legend-item">
+                <div class="legend-swatch answered"></div>
+                <span>Đã trả lời</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-swatch unanswered"></div>
+                <span>Chưa trả lời</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Trang kết quả -->
+      <section id="resultView" class="hidden">
+        <div class="result-card">
+          <div class="result-hero">
+            <div class="result-score" id="resultScore">0/30</div>
+            <div class="result-label" id="resultLabel">Hoàn thành</div>
+            <div class="result-message" id="resultMessage">Hãy xem lại các câu sai bên dưới.</div>
+          </div>
+
+          <div class="result-stats">
+            <div class="result-stat">
+              <div class="result-stat-value success" id="statCorrect">0</div>
+              <div class="result-stat-label">Câu đúng</div>
+            </div>
+            <div class="result-stat">
+              <div class="result-stat-value danger" id="statIncorrect">0</div>
+              <div class="result-stat-label">Câu sai</div>
+            </div>
+            <div class="result-stat">
+              <div class="result-stat-value" id="statSkipped">0</div>
+              <div class="result-stat-label">Bỏ qua</div>
+            </div>
+            <div class="result-stat">
+              <div class="result-stat-value" id="statTime">--</div>
+              <div class="result-stat-label">Thời gian</div>
+            </div>
+            <div class="result-stat">
+              <div class="result-stat-value" id="statPercent">0%</div>
+              <div class="result-stat-label">Tỷ lệ đúng</div>
+            </div>
+          </div>
+
+          <div class="result-actions">
+            <a href="index.html" class="btn btn-secondary">🏠 Về trang chủ</a>
+            <button class="btn btn-primary" id="retakeBtn">🔄 Làm lại</button>
+            <button class="btn btn-success" id="reviewBtn">📋 Xem đáp án</button>
+          </div>
+        </div>
+
+        <h2 class="result-section-title">📝 Xem lại chi tiết các câu</h2>
+        <div id="reviewList"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal xác nhận nộp bài -->
+  <div class="modal-backdrop hidden" id="confirmModal">
+    <div class="modal">
+      <h3 class="modal-title">📝 Nộp bài thi?</h3>
+      <p class="modal-content" id="confirmText">Bạn có chắc chắn muốn nộp bài?</p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="cancelSubmit">Hủy</button>
+        <button class="btn btn-primary" id="confirmSubmit">Nộp bài</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data-sets-all.js?v=2"></script>
+  <script src="app.js?v=2"></script>
+</body>
+</html>

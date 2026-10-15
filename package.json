@@ -1,0 +1,9 @@
+{
+  "name": "olp-ai-exam",
+  "version": "1.0.0",
+  "description": "Olympic Trí tuệ nhân tạo - Bộ đề thi trắc nghiệm mẫu",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "private": true
+}
