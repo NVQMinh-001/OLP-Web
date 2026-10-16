@@ -3,7 +3,7 @@
 const EXAM_SETS = [
   {
     id: 'set-01',
-    title: "Đề thi số 1 - Olympic AI 2025 (Mã đề 001)",
+    title: "Đề luyện tập số 1 (Mã đề 001)",
 
     duration: 180,
     questions: [
@@ -44,7 +44,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-02',
-    title: "Đề thi số 2 - Olympic AI 2025 (Mã đề 002)",
+    title: "Đề luyện tập số 2 (Mã đề 002)",
 
     duration: 180,
     questions: [
@@ -85,7 +85,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-03',
-    title: "Đề thi số 3 - Olympic AI 2025 (Mã đề 003)",
+    title: "Đề luyện tập số 3 (Mã đề 003)",
 
     duration: 180,
     questions: [
@@ -116,7 +116,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-04',
-    title: "Đề thi số 4 - Olympic AI 2025 (Mã đề 004)",
+    title: "Đề luyện tập số 4 (Mã đề 004)",
 
     duration: 180,
     questions: [
@@ -147,7 +147,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-05',
-    title: "Đề thi số 5 - Olympic AI 2025 (Mã đề 005)",
+    title: "Đề luyện tập số 5 (Mã đề 005)",
 
     duration: 180,
     questions: [
@@ -177,7 +177,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-06',
-    title: "Đề thi số 6 - Olympic AI 2025 (Mã đề 006)",
+    title: "Đề luyện tập số 6 (Mã đề 006)",
 
     duration: 180,
     questions: [
@@ -207,7 +207,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-07',
-    title: "Đề thi số 7 - Olympic AI 2025 (Mã đề 007)",
+    title: "Đề luyện tập số 7 (Mã đề 007)",
 
     duration: 180,
     questions: [
@@ -237,7 +237,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-08',
-    title: "Đề thi số 8 - Olympic AI 2025 (Mã đề 008)",
+    title: "Đề luyện tập số 8 (Mã đề 008)",
 
     duration: 180,
     questions: [
@@ -267,7 +267,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-09',
-    title: "Đề thi số 9 - Olympic AI 2025 (Mã đề 009)",
+    title: "Đề luyện tập số 9 (Mã đề 009)",
 
     duration: 180,
     questions: [
@@ -297,7 +297,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-10',
-    title: "Đề thi số 10 - Olympic AI 2025 (Mã đề 010)",
+    title: "Đề luyện tập số 10 (Mã đề 010)",
 
     duration: 180,
     questions: [
@@ -327,7 +327,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-11',
-    title: "Đề thi số 11 - Olympic AI 2025 (Mã đề 011)",
+    title: "Đề luyện tập số 11 (Mã đề 011)",
 
     duration: 180,
     questions: [
@@ -357,7 +357,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-12',
-    title: "Đề thi số 12 - Olympic AI 2025 (Mã đề 012)",
+    title: "Đề luyện tập số 12 (Mã đề 012)",
 
     duration: 180,
     questions: [
@@ -387,7 +387,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-13',
-    title: "Đề thi số 13 - Olympic AI 2025 (Mã đề 013)",
+    title: "Đề luyện tập số 13 (Mã đề 013)",
 
     duration: 180,
     questions: [
@@ -417,7 +417,7 @@ const EXAM_SETS = [
   },
   {
     id: 'set-14',
-    title: "Đề thi số 14 - Olympic AI 2025 (Mã đề 014)",
+    title: "Đề luyện tập số 14 (Mã đề 014)",
 
     duration: 180,
     questions: [
