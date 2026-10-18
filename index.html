@@ -28,11 +28,11 @@
       <!-- Trang chủ: danh sách đề -->
       <section id="homeView">
         <div class="intro-banner">
-          <h2>🎓 Bộ đề luyện tập Trí tuệ nhân tạo</h2>
-          <p>14 đề trắc nghiệm, mỗi đề 22–33 câu trộn lẫn các chủ đề <strong>Học máy, Thị giác máy tính, Xử lý ngôn ngữ tự nhiên</strong> (ML, DL, CNN, GAN, NLP, BERT, GPT, LLM, code reading, tính toán). Mỗi câu có 4 đáp án A/B/C/D và giải thích chi tiết.</p>
+          <h2>🎓 Bộ đề luyện tập Olympic Trí tuệ nhân tạo (UET 2026)</h2>
+          <p>Bám sát đề cương thi OLP AI SV 2026 – Trường ĐH Công nghệ (UET), dựa trên <strong>Syllabus IOAI 2026</strong> – cũng là phạm vi kỳ thi chọn đội tuyển Olympic AI quốc gia (VOAI 2026). Mỗi đề 40 câu / 60 phút, phân bố đều 4 mảng: Kỹ năng nền tảng + ML cổ điển (10 câu), Mạng nơ-ron + Học sâu (10 câu), Thị giác máy tính (10 câu), Xử lý ngôn ngữ tự nhiên + Âm thanh (10 câu). Mỗi câu 4 đáp án A/B/C/D với giải thích chi tiết.</p>
           <div class="ai-disclaimer">
-            <span class="ai-disclaimer-icon">⚠️</span>
-            <span class="ai-disclaimer-text"><strong>Lưu ý quan trọng:</strong> Toàn bộ câu hỏi và đáp án được tạo tự động bởi AI, có thể chứa sai sót về nội dung, đáp án hoặc giải thích. Vui lòng đối chiếu với tài liệu chính thống trước khi sử dụng cho mục đích thi cử. Trang web này <em>không phải</em> đề thi chính thức của bất kỳ kỳ Olympic hay cuộc thi nào.</span>
+            <span class="ai-disclaimer-icon">📘</span>
+            <span class="ai-disclaimer-text"><strong>Bám sát IOAI 2026 Syllabus:</strong> Tất cả câu hỏi được tổng hợp và biên soạn lại dựa trên các chủ đề thi của IOAI 2026 (cũng là syllabus VOAI 2026). Nội dung bám theo <em>4 mảng chính</em> của đề cương: nền tảng + ML cổ điển, mạng nơ-ron & học sâu, thị giác máy tính (Conv, Detection, Segmentation, GAN, Diffusion), và NLP + Âm thanh (BERT, Encoder-Decoder, HuBERT, Whisper, Voxtral). Mỗi câu có 4 đáp án A/B/C/D; tỉ lệ lý thuyết/thực hành theo IOAI ưu tiên bề rộng. Trang web này <em>không phải</em> đề thi chính thức — vui lòng đối chiếu tài liệu gốc (đề cương OLP AI SV 2026 UET, IOAI Education Hub) trước khi dùng.</span>
           </div>
           <div class="intro-stats">
             <div class="intro-stat">
@@ -40,7 +40,7 @@
               <div class="intro-stat-label">Bộ đề</div>
             </div>
             <div class="intro-stat">
-              <div class="intro-stat-value" id="totalQuestions">420+</div>
+              <div class="intro-stat-value" id="totalQuestions">560</div>
               <div class="intro-stat-label">Câu hỏi</div>
             </div>
             <div class="intro-stat">
@@ -77,7 +77,13 @@
           <aside class="question-palette">
             <div class="palette-title">
               <span>Danh sách câu hỏi</span>
-              <span class="palette-stats" id="paletteStats">0/30</span>
+              <span class="palette-stats" id="paletteStats">0/40</span>
+            </div>
+            <div class="palette-topic-legend">
+              <div class="legend-item"><div class="legend-swatch ml"></div><span>ML</span></div>
+              <div class="legend-item"><div class="legend-swatch dl"></div><span>NN/DL</span></div>
+              <div class="legend-item"><div class="legend-swatch cv"></div><span>CV</span></div>
+              <div class="legend-item"><div class="legend-swatch nlp"></div><span>NLP/Âm thanh</span></div>
             </div>
             <div class="palette-grid" id="paletteGrid"></div>
             <div class="palette-legend">
@@ -98,7 +104,7 @@
       <section id="resultView" class="hidden">
         <div class="result-card">
           <div class="result-hero">
-            <div class="result-score" id="resultScore">0/30</div>
+            <div class="result-score" id="resultScore">0/40</div>
             <div class="result-label" id="resultLabel">Hoàn thành</div>
             <div class="result-message" id="resultMessage">Hãy xem lại các câu sai bên dưới.</div>
           </div>
@@ -151,7 +157,7 @@
     </div>
   </div>
 
-  <script src="data-sets-all.js?v=9"></script>
-  <script src="app.js?v=7"></script>
+  <script src="data-sets-all.js?v=2"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

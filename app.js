@@ -1,8 +1,10 @@
 /* =============================================================
-   OLP AI Exam - Application Logic
+   OLP AI Exam - Application Logic (IOAI 2026 Syllabus)
    ============================================================= */
 
-// 14 exam sets, each is a mixed-topic complete exam
+// 14 exam sets aligned to IOAI 2026 official syllabus
+// Each set = 40 questions, 60 minutes
+// 10 questions per topic area (ML Classic / NN-DL / CV / NLP-Audio)
 const ALL_SETS = window.EXAM_SETS || [];
 
 // State
@@ -124,6 +126,8 @@ function renderPalette() {
   state.currentSet.questions.forEach((q, idx) => {
     const btn = document.createElement('button');
     btn.className = 'palette-btn';
+    const topic = (q.topic || '').substring(0, 2);
+    btn.dataset.topic = topic;
     if (state.answers[idx]?.selected !== null) btn.classList.add('answered');
     if (idx === state.currentQuestionIndex) btn.classList.add('current');
     if (state.flagged[idx]) btn.classList.add('flagged');
@@ -225,21 +229,48 @@ function renderQuestion() {
 }
 
 function getTopicTag(idx) {
-  // Approximate topic mapping for visual
-  const setId = state.currentSet.id;
+  // Use the topic from each question, mapped to IOAI 2026 syllabus 4 areas
+  const q = state.currentSet.questions[idx];
+  const topicCode = q.topic || '';
   const tagMap = {
-    'set-01': 'ML cơ bản',
-    'set-02': 'Deep Learning',
-    'set-03': 'CNN',
-    'set-04': 'RNN/NLP',
-    'set-05': 'Transformer',
-    'set-06': 'Detection',
-    'set-07': 'Generative',
-    'set-08': 'RL',
-    'set-09': 'Ethics/Metric',
-    'set-10': 'Tổng hợp'
+    // T1 - Kỹ năng nền tảng + ML cổ điển
+    'ML1': 'ML cổ điển (1.1)',
+    'ML2': 'ML cổ điển (1.2)',
+    'ML3': 'ML cổ điển (1.3)',
+    'ML4': 'ML cổ điển (1.4)',
+    'ML5': 'ML cổ điển (1.5)',
+    'ML6': 'ML cổ điển (1.6)',
+    'ML7': 'Ensemble (1.7)',
+    'ML8': 'Boosting (1.8)',
+    'ML9': 'K-Means (1.9)',
+    'ML10': 'Unsupervised (1.10)',
+    // T2 - Neural Networks + Deep Learning
+    'DL1': 'NN/DL (2.1-2.2)',
+    'DL2': 'NN/DL (2.3-2.10)',
+    // T3 - Computer Vision
+    'CV1': 'CV - Conv (3.1)',
+    'CV2': 'CV - Classify (3.2)',
+    'CV3': 'CV - Detect (3.3)',
+    'CV4': 'CV - mAP/NMS (3.4)',
+    'CV5': 'CV - Segment (3.5)',
+    'CV6': 'CV - Transfer (3.6)',
+    'CV7': 'CV - Augment (3.7)',
+    'CV8': 'CV - GAN (3.8)',
+    'CV9': 'CV - Diffusion (3.9)',
+    'CV10': 'CV - SSL/CLIP (3.10)',
+    // T4 - NLP + Audio
+    'NL1': 'NLP - BERT (4.1)',
+    'NL2': 'NLP - GPT/LM (4.2)',
+    'NL3': 'NLP - Classify (4.3)',
+    'NL4': 'NLP - Encoder-Dec (4.4)',
+    'NL5': 'NLP - Embed (4.5)',
+    'NL6': 'NLP - Tokenize (4.6)',
+    'NL7': 'NLP - Fine-tune (4.7)',
+    'NL8': 'Audio - HuBERT (4.8)',
+    'NL9': 'Audio - Whisper (4.9)',
+    'NL10': 'Audio - Voxtral (4.10)'
   };
-  return tagMap[setId] || 'OLP AI';
+  return tagMap[topicCode] || 'OLP AI';
 }
 
 function renderExplanation(q, userSelected) {

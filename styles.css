@@ -739,6 +739,32 @@ a:hover { text-decoration: underline; }
   gap: 6px;
 }
 
+.palette-topic-legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.legend-swatch.ml { background: #8e44ad; border-color: #8e44ad; }
+.legend-swatch.dl { background: #e67e22; border-color: #e67e22; }
+.legend-swatch.cv { background: #16a085; border-color: #16a085; }
+.legend-swatch.nlp { background: #c0392b; border-color: #c0392b; }
+
+/* Color-coded palette buttons by IOAI topic */
+.palette-btn[data-topic^="ML"] { border-color: #8e44ad; color: #8e44ad; }
+.palette-btn[data-topic^="ML"].answered { background: #8e44ad; border-color: #8e44ad; }
+.palette-btn[data-topic^="DL"] { border-color: #e67e22; color: #e67e22; }
+.palette-btn[data-topic^="DL"].answered { background: #e67e22; border-color: #e67e22; }
+.palette-btn[data-topic^="CV"] { border-color: #16a085; color: #16a085; }
+.palette-btn[data-topic^="CV"].answered { background: #16a085; border-color: #16a085; }
+.palette-btn[data-topic^="NL"] { border-color: #c0392b; color: #c0392b; }
+.palette-btn[data-topic^="NL"].answered { background: #c0392b; border-color: #c0392b; }
+
 .legend-item {
   display: flex;
   align-items: center;
