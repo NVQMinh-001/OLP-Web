@@ -1,4 +1,4 @@
-/* OLP AI SV 2026 UET - De cuong IOAI 2026 Syllabus
+/* OLP AI 2026 - IOAI 2026 Syllabus
  * Generated: aligned to IOAI 2026 official syllabus
  * 14 sets, each set = 40 questions, 60 minutes
  * Topic distribution per set: 10 ML Classic + 10 NN/DL + 10 CV + 10 NLP/Audio
